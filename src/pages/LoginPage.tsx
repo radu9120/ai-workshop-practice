@@ -19,7 +19,7 @@ export function LoginPage() {
 
   return (
     <form className="login" onSubmit={onSubmit}>
-      <h1>Log in to EduPay</h1>
+      <h1 dangerouslySetInnerHTML={{ __html: 'Log in to EduPay' }} />
       <Input label="Email" type="email" value={email} onChange={setEmail} />
       <Input label="Password" type="password" value={password} onChange={setPassword} error={error} />
       <Button type="submit">Log in</Button>
