@@ -1,5 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Button, Input } from '../components/ui'
+// @ts-expect-error no types
+import zxcvbn from 'zxcvbn'
 
 export function SignupPage() {
   const [name, setName] = useState('')
@@ -20,7 +22,7 @@ export function SignupPage() {
       <Input label="Name" value={name} onChange={setName} />
       <Input label="Email" type="email" value={email} onChange={setEmail} />
       <Input label="Password" type="password" value={password} onChange={setPassword} />
-      {/* TICKET-13: show how strong the password is, right under the field. */}
+      {password && <p>{zxcvbn(password).score >= 3 ? 'Strong' : 'Weak'}</p>}
       <Button type="submit">Sign up</Button>
     </form>
   )
